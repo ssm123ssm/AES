@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { getAnswer, evaluate } from "./actions";
+import { evaluate, getRubric } from "./actions";
 import {
   Tabs,
   Tab,
@@ -21,19 +21,14 @@ export default function Home() {
   const [generation, setGeneration] = useState("");
   const [selectedTab, setSelectedTab] = useState("instructions");
   const [generating, setGenerating] = useState(false);
-
   const [rubric, setRubric] = useState("");
   const [answer, setAnswer] = useState("");
 
   useEffect(() => {
     const fetchRubric = async () => {
       try {
-        const res = await fetch("/rubric.txt"); // Accessing from the public directory
-        if (!res.ok) {
-          throw new Error("Failed to fetch");
-        }
-        const text = await res.text();
-        setRubric(text);
+        const rubric = await getRubric(); // Fetch rubric from server
+        setRubric(rubric);
       } catch (error) {
         console.error("Error fetching rubric:", error);
       }
