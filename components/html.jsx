@@ -14,11 +14,7 @@ const HtmlDisplayAndDownload = ({ htmlContent }) => {
   return (
     <div className="max-h-[300px]">
       <div dangerouslySetInnerHTML={{ __html: htmlContent }} className="p-3" />
-      <Button
-        onClick={downloadHtmlFile}
-        className="m-3 mx-auto w-full"
-        disabled={htmlContent != ""}
-      >
+      <Button onClick={downloadHtmlFile} className="m-3 mx-auto w-full">
         Download as HTML
       </Button>
     </div>
