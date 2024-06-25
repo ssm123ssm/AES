@@ -23,6 +23,7 @@ export default function Home() {
   const [generating, setGenerating] = useState(false);
   const [rubric, setRubric] = useState("");
   const [answer, setAnswer] = useState("");
+  const [generated, setGenerated] = useState(false);
 
   useEffect(() => {
     const fetchRubric = async () => {
@@ -85,6 +86,7 @@ export default function Home() {
                     const { text } = await evaluate(rubric, answer);
                     setGeneration(text);
                     setGenerating(false);
+                    setGenerated(true);
                   }}
                 >
                   Submit
@@ -103,13 +105,17 @@ export default function Home() {
                     className="w-full my-4"
                   />
                 )}
-                {!generating && (
+                {generated && (
                   <HtmlDisplayAndDownload htmlContent={generation} />
                 )}
 
-                <Button color="primary" onClick={() => setGeneration("")}>
-                  Reset
-                </Button>
+                <Textarea
+                  label=""
+                  placeholder="Evaluation results will be displayed here."
+                  className="h-[200px]"
+                  minRows={20}
+                  disabled
+                />
               </CardBody>
             </Card>
           </Tab>
