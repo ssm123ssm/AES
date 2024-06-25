@@ -54,8 +54,10 @@ export default function RootLayout({
                 href="https://nextui-docs-v2.vercel.app?utm_source=next-app-template"
                 title="nextui.org homepage"
               >
-                <span className="text-default-600">neurasense.io</span>
-                <p className="text-primary">| 2024</p>
+                <span className="text-default-600">
+                  University of Peradeniya
+                </span>
+                <p className="text-primary">| Faculty of Medicine</p>
               </Link>
             </footer>
           </div>
