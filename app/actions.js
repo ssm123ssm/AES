@@ -26,7 +26,7 @@ export async function evaluate(rubric, answer) {
   }); */
 
   const { text } = await generateText({
-    model: anthropic("claude-3-5-sonnet-20240620"), //anthropic("claude-3-5-sonnet-20240620"),
+    model: openai("gpt-4o"), //anthropic("claude-3-5-sonnet-20240620"),
     prompt: system_message,
     temperature: 0.1,
     seed: 0,
