@@ -15,7 +15,7 @@ import HtmlDisplayAndDownload from "@/components/html";
 
 // Force the page to be dynamic and allow streaming responses up to 30 seconds
 export const dynamic = "force-dynamic";
-export const maxDuration = 30;
+export const maxDuration = 60;
 
 export default function Home() {
   const [generation, setGeneration] = useState("");
@@ -109,13 +109,15 @@ export default function Home() {
                   <HtmlDisplayAndDownload htmlContent={generation} />
                 )}
 
-                <Textarea
-                  label=""
-                  placeholder="Evaluation results will be displayed here."
-                  className="h-[200px]"
-                  minRows={20}
-                  disabled
-                />
+                {!generated && (
+                  <Textarea
+                    label=""
+                    placeholder="Evaluation results will be displayed here."
+                    className="h-[200px]"
+                    minRows={20}
+                    disabled
+                  />
+                )}
               </CardBody>
             </Card>
           </Tab>

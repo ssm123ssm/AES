@@ -17,6 +17,8 @@ export async function evaluate(rubric, answer) {
     The final report should be in HTML with necessary formatting, which will be saved directly as a HTML file. Do not include triple backticks and html identifier.
   `;
 
+  console.time("generateText"); // Start the timer
+
   /* const { text, finishReason, usage } = await generateText({
     model: openai("gpt-4o"),
     prompt: system_message,
@@ -24,10 +26,13 @@ export async function evaluate(rubric, answer) {
   }); */
 
   const { text } = await generateText({
-    model: openai("gpt-4o"), //anthropic("claude-3-5-sonnet-20240620"),
+    model: anthropic("claude-3-5-sonnet-20240620"), //anthropic("claude-3-5-sonnet-20240620"),
     prompt: system_message,
-    temperature: 0,
+    temperature: 0.1,
+    seed: 0,
   });
+
+  console.timeEnd("generateText"); // End the timer and log the time
 
   return { text };
 }
