@@ -15,7 +15,7 @@ import HtmlDisplayAndDownload from "@/components/html";
 
 // Force the page to be dynamic and allow streaming responses up to 30 seconds
 export const dynamic = "force-dynamic";
-export const maxDuration = 300;
+export const maxDuration = 60;
 
 export default function Home() {
   const [generation, setGeneration] = useState("");
