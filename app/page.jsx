@@ -41,6 +41,9 @@ export default function Home() {
   return (
     <div>
       <div className="flex w-full flex-col max-w-[600px] mx-auto">
+        <p className="my-4 text-xl font-extrabold leading-none tracking-tight text-gray-900 md:text-3xl lg:text-3xl dark:text-white">
+          Automated Essay Scoring System
+        </p>
         <Tabs
           aria-label="Options"
           selectedKey={selectedTab}
@@ -95,7 +98,7 @@ export default function Home() {
             </Card>
           </Tab>
           <Tab key="results" title="Results">
-            <Card className=" h-[300px]">
+            <Card className=" h-[400px]">
               <CardBody>
                 {generating && (
                   <Progress
@@ -113,8 +116,8 @@ export default function Home() {
                   <Textarea
                     label=""
                     placeholder="Evaluation results will be displayed here."
-                    className="h-[200px]"
-                    minRows={20}
+                    className="h-[400px]"
+                    minRows={40}
                     disabled
                   />
                 )}

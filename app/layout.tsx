@@ -44,7 +44,7 @@ export default function RootLayout({
         <Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
           <div className="relative flex flex-col h-screen">
             <Navbar />
-            <main className="container mx-auto max-w-7xl pt-16 px-6 flex-grow">
+            <main className="container mx-auto max-w-7xl pt-4 px-6 flex-grow">
               {children}
             </main>
             <footer className="w-full flex items-center justify-center py-3">
@@ -58,6 +58,9 @@ export default function RootLayout({
                   University of Peradeniya
                 </span>
                 <p className="text-primary">| Faculty of Medicine</p>
+                <span className="text-default-600">
+                  | Department of Pharmacology
+                </span>
               </Link>
             </footer>
           </div>
