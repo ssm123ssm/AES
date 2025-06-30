@@ -86,7 +86,7 @@ export default function Home() {
                   onClick={async () => {
                     setSelectedTab("results");
                     setGenerating(true);
-                    const { text } = await evaluate(rubric, answer);
+                    const { text } = await evaluate("rubric", answer);
                     setGeneration(text);
                     setGenerating(false);
                     setGenerated(true);

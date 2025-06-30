@@ -8,46 +8,35 @@ import { google } from "googleapis";
 
 export async function evaluate(rubric, answer) {
   const system_message = `
-You are a pharmacology examiner evaluating medical school essay questions. Below is the marking scheme for a specific question:
+    You are an examiner of a pharmacology exam in medical school. Following are the questions and marking schemes for the essay questions. Formulate the analysis report for the questions.
+    ${rubric}
 
-${rubric}
+    The analysis report should contain the following:
+    1. List down each point in the marking scheme and if the student has mentioned the point in his answer, show the excerpt (as the full sentence) from the student answer. If it is not mentioned, mention NOT MENTIONED. Evaluate the correctness of the answer. Based on each point in the marking scheme, assign a score to each point (decide whether to give full marks or partial marks and mention your justification as well, for each point and mention the marks awarded). The student does not need to discribe the point in detail, just mentioning the point is enough.
+    2. Calculate the marks for each section and calculate the total score to the student answer.
 
-Your task is to analyze a student's answer and generate an evaluation report. Follow these steps:
+    Student answer: ${answer}
 
-1. For each point in the marking scheme:
-   - State the point.
-   - Check if the student mentioned it in their answer:
-     - If mentioned, include the full sentence from the students answer as an excerpt.
-     - If not mentioned, write: NOT MENTIONED.
-   - Assess the correctness and relevance of the mention.
-   - Assign marks (full, partial, or none) and provide a brief justification.
+    The final report should be in HTML with necessary formatting, which will be saved directly as a HTML file. Do not include triple backticks and html identifier. Be concise and to the point. Most important thing is the accuracy. Do not format as a table. Use bullet points for each point in the marking scheme.
 
+  `;
 
-2. Summarize:
-   - Provide a subtotal for each section if applicable.
-   - Calculate and clearly state the total score.
+  console.time("generateText"); // Start the timer
 
-Additional Instructions:
-- Format the final report in clean HTML suitable for saving as an `.html` file.
-- Use bullet points for each marking scheme item (do not use tables).
-- Do not include code block markers or \`html\` identifiers.
-- Be concise, accurate, and structured.
-
-Student Answer:
-${answer}
-`;
-
-
-  console.time("generateText"); 
+  /* const { text, finishReason, usage } = await generateText({
+    model: openai("gpt-4o"),
+    prompt: system_message,
+    temperature: 0,
+  }); */
 
   const { text } = await generateText({
-    model: openai("gpt-4.5-preview"), 
+    model: anthropic("claude-3-opus-20240229"), //anthropic("claude-3-5-sonnet-20240620"),
     prompt: system_message,
     temperature: 0.1,
     seed: 0,
   });
 
-  console.timeEnd("generateText"); 
+  console.timeEnd("generateText"); // End the timer and log the time
 
   return { text };
 }
