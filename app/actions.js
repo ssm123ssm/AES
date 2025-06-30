@@ -17,7 +17,7 @@ export async function evaluate(rubric, answer) {
 
     Student answer: ${answer}
 
-    The final report should be in HTML with necessary formatting, which will be saved directly as a HTML file. Do not include triple backticks and html identifier. Be concise and to the point. Most important thing is the accuracy. Do not format as a table. Use bullet points for each point in the marking scheme.
+    The final report should be in HTML with necessary formatting, which will be saved directly as a HTML file. Do not include triple backticks and html identifier. Be concise and to the point. Most important thing is the accuracy. Do not format as a table. Use bullet points for each point in the marking scheme. Do not include preamble like "Here is the analysis report" or "The student answer is". Just start with the analysis report directly
 
   `;
 
@@ -30,7 +30,7 @@ export async function evaluate(rubric, answer) {
   }); */
 
   const { text } = await generateText({
-    model: anthropic("claude-3-opus-20240229"), //anthropic("claude-3-5-sonnet-20240620"),
+    model: anthropic("claude-opus-4-20250514"), //anthropic("claude-3-5-sonnet-20240620"),
     prompt: system_message,
     temperature: 0.1,
     seed: 0,
